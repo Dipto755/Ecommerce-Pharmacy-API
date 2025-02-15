@@ -12,7 +12,7 @@ class IsOrganizationInternal(permissions.BasePermission):
         if not request.user.is_authenticated:
             return False
         
-        return UserOrganization.objects.filter(user=request.user, role__in = ['owner', 'admin', 'manager', 'staff'], status=StatusChoices.Active).exists()
+        return UserOrganization.objects.IS_ACTIVE().filter(user=request.user, role__in = ['OWNER', 'ADMIN', 'MANAGER', 'STAFF']).exists()
     
 class IsOrganizationOwner(permissions.BasePermission):
     
@@ -20,7 +20,7 @@ class IsOrganizationOwner(permissions.BasePermission):
         if not request.user.is_authenticated:
             return False
         
-        return UserOrganization.objects.filter(user=request.user, role = RoleChoices.Owner, status = StatusChoices.Active).exists()
+        return UserOrganization.objects.IS_ACTIVE().filter(user=request.user, role = RoleChoices.OWNER).exists()
         
 class IsOrganizationAdmin(IsOrganizationOwner):
     
@@ -31,7 +31,7 @@ class IsOrganizationAdmin(IsOrganizationOwner):
         if super().has_permission(request, view):
             return True
         
-        return UserOrganization.objects.filter(user=request.user, role = RoleChoices.Admin, status = StatusChoices.Active).exists()
+        return UserOrganization.objects.IS_ACTIVE().filter(user=request.user, role = RoleChoices.ADMIN).exists()
     
 class IsOrganizationManager(IsOrganizationAdmin):
     
@@ -42,7 +42,7 @@ class IsOrganizationManager(IsOrganizationAdmin):
         if super().has_permission(request, view):
             return True
         
-        return UserOrganization.objects.filter(user=request.user, role = RoleChoices.Manager, status = StatusChoices.Active).exists()
+        return UserOrganization.objects.filter(user=request.user, role = RoleChoices.MANAGER, status = StatusChoices.ACTIVE).exists()
     
 class IsOrganizationStaff(IsOrganizationManager):
     
@@ -53,7 +53,7 @@ class IsOrganizationStaff(IsOrganizationManager):
         if super().has_permission(request, view):
             return True
         
-        return UserOrganization.objects.filter(user=request.user, role = RoleChoices.Staff, status = StatusChoices.Active).exists()
+        return UserOrganization.objects.IS_ACTIVE().filter(user=request.user, role = RoleChoices.STAFF).exists()
     
 
     

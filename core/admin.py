@@ -3,6 +3,7 @@ from django.contrib import admin
 from .models import (
     User,
     UserOrganization,
+    Organization,
     Category,
     Product,
     ProductCategory,
@@ -12,19 +13,25 @@ from .models import (
     OrderItem,
     Review,
     ProductReview,
+    MediaRoom,
+    MediaRoomConnector
 )
 
-
+#Just to test github push!!
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     ordering = ["id"]
     list_display = ["username", "first_name", "last_name", "status"]
 
+@admin.register(Organization)
+class OrganizationAdmin(admin.ModelAdmin):
+    ordering=["id"]
+    list_display = ["name", "email", "phone"]
 
 @admin.register(UserOrganization)
 class UserOrganizationAdmin(admin.ModelAdmin):
     ordering = ["id"]
-    list_display = ["user", "role", "status"]
+    list_display = ["user", "organization", "role", "status"]
 
 
 @admin.register(Category)
@@ -36,7 +43,7 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     ordering = ["id"]
-    list_display = ["name", "expired_date", "price"]
+    list_display = ["name", "organization", "stock", "expiry_date", "price"]
 
 
 @admin.register(ProductCategory)
@@ -131,3 +138,18 @@ class ProductReviewAdmin(admin.ModelAdmin):
         return obj.product.name
 
     get_product_name.short_description = "product_name"
+    
+@admin.register(MediaRoom)
+class MediaRoomAdmin(admin.ModelAdmin):
+    ordering = ['id']
+    list_display = ['file']
+    
+    
+@admin.register(MediaRoomConnector)
+class MediaRoomConnectorAdmin(admin.ModelAdmin):
+    ordering = ['id']
+    list_display = ['get_media_name']
+    
+    def get_media_name(self, obj):
+        return obj.mediaroom.file
+    get_media_name.short_description = "media_name"

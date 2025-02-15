@@ -1,120 +1,131 @@
-class GenderChoices:
-    Male = 'male'
-    Female = 'female'
-    Other = 'other'
-    
-    CHOICES = [
-        (Male, 'Male'),
-        (Female, 'Female'),
-        (Other, 'Other'),
-    ]
+from django.db.models import TextChoices
 
-    
-class StatusChoices:
-    Active = 'active'
-    Inactive = "inactive"
-    Removed = 'removed'
-    
-    CHOICES = [
-        (Active, 'Active'),
-        (Inactive, 'Inactive'),
-        (Removed, 'Removed'),
-    ]
-    
-class RoleChoices:
-    Owner = 'owner'
-    Admin = 'admin'
-    Manager = 'manager'
-    Staff = 'staff'
-    
-    CHOICES = [
-        (Owner, 'Owner'),
-        (Admin, 'Admin'),
-        (Manager, 'Manager'),
-        (Staff, 'Staff'),
-    ]
 
-class OwnerRoleChoices:
-    Admin = 'admin'
-    Manager = 'manager'
-    Staff = 'staff'
-    
-    CHOICES = [
-        (Admin, 'Admin'),
-        (Manager, 'Manager'),
-        (Staff, 'Staff'),
-    ]
-    
-class AdminRoleChoices:
-    Manager = 'manager'
-    Staff = 'staff'
-    
-    CHOICES = [
-        (Manager, 'Manager'),
-        (Staff, 'Staff'),
-    ]
+class GenderChoices(TextChoices):
+    MALE = "MALE", "Male"
+    FEMALE = "FEMALE", "Female"
+    OTHER = "OTHER", "Other"
 
-class ManagerRoleChoices:
-    Staff = 'staff'
-    
-    CHOICES = [
-        (Staff, 'Staff'),
-    ]
+    # CHOICES = [
+    #     (Male, 'Male'),
+    #     (Female, 'Female'),
+    #     (Other, 'Other'),
+    # ]
 
-class ProductStockChoices:
-    InStock = 'in_stock'
-    OutOfStock = 'out_of_stock'
-    
-    CHOICES = [
-        (InStock, 'In Stock'),
-        (OutOfStock, 'Out of Stock'),
-    ]
 
-class ProductStatusChoices:
-    Draft = 'draft'
-    Published = 'published'
-    
-    CHOICES = [
-        (Draft, 'Draft'),
-        (Published, 'Published'),
-    ]
+class StatusChoices(TextChoices):
+    ACTIVE = "ACTIVE", "Active"
+    INACTIVE = "INACTIVE", "Inactive"
+    REMOVED = "REMOVED", "Removed"
 
-class OrderCreateChoices:
-    New = 'new'
+    # CHOICES = [
+    #     (ACTIVE, 'Active'),
+    #     (INACTIVE, 'Inactive'),
+    #     (REMOVED, 'Removed'),
+    # ]
 
-    CHOICES = [
-        (New, 'New'),
-    ]
 
-class OrderStatusChoices:
-    Processing = 'processing'
-    Shipped = 'shipped'
-    Delivered = 'delivered'
-    
-    CHOICES = [
-        (Processing, 'Processing'),
-        (Shipped, 'Shipped'),
-        (Delivered, 'Delivered'),
-    ]
-    
+class RoleChoices(TextChoices):
+    OWNER = "OWNER", "Owner"
+    ADMIN = "ADMIN", "Admin"
+    MANAGER = "MANAGER", "Manager"
+    STAFF = "STAFF", "Staff"
 
-class ReviewStatusChoices:
-    Reviewed = 'reviewed'
-    NotReviewed = 'not_reviewed'
-    
-    CHOICES = [
-        (Reviewed, 'Reviewed'),
-        (NotReviewed, 'Not Reviewed'),
-    ]
-    
+    # CHOICES = [
+    #     (OWNER, 'Owner'),
+    #     (ADMIN, 'Admin'),
+    #     (MANAGER, 'Manager'),
+    #     (STAFF, 'Staff'),
+    # ]
 
-class ReviewStatusForOrderChoices:
-    Reviewed = 'reviewed'
-    PartiallyReviewed = 'partially_reviewed'
-    NotReviewed = 'not_reviewed'
-    
-    CHOICES = [
-        (Reviewed, 'Reviewed'),
-        (PartiallyReviewed, 'Partially Reviewed'),
-        (NotReviewed, 'Not Reviewed'),
-    ]
+
+# class OwnerRoleChoices:
+#     Admin = 'admin'
+#     Manager = 'manager'
+#     Staff = 'staff'
+
+#     CHOICES = [
+#         (Admin, 'Admin'),
+#         (Manager, 'Manager'),
+#         (Staff, 'Staff'),
+#     ]
+
+# class AdminRoleChoices:
+#     Manager = 'manager'
+#     Staff = 'staff'
+
+#     CHOICES = [
+#         (Manager, 'Manager'),
+#         (Staff, 'Staff'),
+#     ]
+
+# class ManagerRoleChoices:
+#     Staff = 'staff'
+
+#     CHOICES = [
+#         (Staff, 'Staff'),
+#     ]
+
+
+class ProductStockChoices(TextChoices):
+    IN_STOCK = "IN_STOCK", "In Stock"
+    OUT_OF_STOCK = "OUT_OF_STOCK", "Out of Stock"
+
+    # CHOICES = [
+    #     (INSTOCK, 'In Stock'),
+    #     (OUTOFSTOCK, 'Out of Stock'),
+    # ]
+
+
+class ProductStatusChoices(TextChoices):
+    DRAFT = "DRAFT", "Draft"
+    PUBLISHED = "PUBLISHED", "Published"
+    REMOVED = "REMOVED", "Removed"
+
+    # CHOICES = [
+    #     (DRAFT, 'Draft'),
+    #     (PUBLISHED, 'Published'),
+    #     (REMOVED, 'Removed')
+    # ]
+
+
+class OrderCreateChoices(TextChoices):
+    NEW = "NEW", "New"
+
+    # CHOICES = [
+    #     (NEW, 'New'),
+    # ]
+
+
+class OrderStatusChoices(TextChoices):
+    PROCESSING = "PROCESSING", "Processing"
+    SHIPPED = "SHIPPED", "Shipped"
+    DELIVERED = "DELIVERED", "Delivered"
+
+    # CHOICES = [
+    #     (PROCESSING, 'Processing'),
+    #     (SHIPPED, 'Shipped'),
+    #     (DELIVERED, 'Delivered'),
+    # ]
+
+
+class ReviewStatusChoices(TextChoices):
+    REVIEWED = "REVIEWED", "Reviewed"
+    NOT_REVIEWED = "NOT_REVIEWED", "Not Reviewed"
+
+    # CHOICES = [
+    #     (REVIEWED, 'Reviewed'),
+    #     (NOTREVIEWED, 'Not Reviewed'),
+    # ]
+
+
+class ReviewStatusForOrderChoices(TextChoices):
+    REVIEWED = "REVIEWED", "Reviewed"
+    PARTIALLY_REVIEWED = "PARTIALLY_REVIEWED", "Partially Reviewed"
+    NOT_REVIEWED = "NOT_REVIEWED", "Not Reviewed"
+
+    # CHOICES = [
+    #     (REVIEWED, 'Reviewed'),
+    #     (PARTIALLYREVIEWED, 'Partially Reviewed'),
+    #     (NOTREVIEWED, 'Not Reviewed'),
+    # ]

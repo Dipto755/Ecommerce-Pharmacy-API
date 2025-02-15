@@ -46,11 +46,10 @@ class UserOrganizationSerializer(serializers.ModelSerializer):
     user = serializers.SlugRelatedField(
         queryset=User.objects.filter(), slug_field="slug", many=False
     )
-    role = serializers.ChoiceField(choices=RoleChoices.CHOICES)
+    role = serializers.ChoiceField(choices=RoleChoices)
     date_joined = serializers.DateTimeField(read_only=True)
 
     class Meta:
         model = UserOrganization
         fields = ["user", "role", "status", "salary", "date_joined"]
         read_only_fields = ["date_joined"]
-

@@ -13,6 +13,7 @@ urlpatterns = [
     path('api/v1/', include('organization.urls')),
     path('api/v1/', include('product.urls')),
     path('api/v1/', include('cart.urls')),
+    path('api-auth/', include('rest_framework.urls')),
 ] + debug_toolbar_urls()
 
 urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]
